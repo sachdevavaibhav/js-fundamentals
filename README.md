@@ -70,3 +70,9 @@
 - The term "block" typically refers to a set of statements enclosed within curly braces {}. These blocks are used to group statements together. Block is used where javascript expects a statement (but we want to have a group of statements). A block is also known as a Compound Statement.
 - The variables declared using let & const are block scoped which means they are available inside the block and not outside of it. The lexical scope chain applies as it applies elsewhere.
 - Shadowing occurs when a variable declared in a certain scope has the same name as a variable declared in an outer scope. When this happens, the inner variable "shadows" the outer variable, meaning that any attempt to access the variable within the inner scope will refer to the inner variable, not the outer one.
+- Shadowing works similarly in function scope.
+- Shadowing a let variable with var type is not allowed and this is called Illegal Shadowing.(Why?)
+Because var ‘overflows’ from the inner scope to outer (since it is function scoped) where let variable is present and we are now left with multiple declarations of let variable which is invalid.
+
+![Screenshot from 2023-12-11 20-35-21](https://github.com/sachdevavaibhav/js-fundamentals/assets/72242181/d3411d1e-6e23-404a-bfca-c1455ec98d7f)
+        
