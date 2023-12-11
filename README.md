@@ -53,6 +53,9 @@
 - The lexical environment is a place where variables are declared and reside along with the reference to the outer/parent lexical environment.
 - **Scope chain** is the mechanism in which the JS engine looks for the variable in current lexical environment and if not found it looks in the parent lexical environment until it reaches the global lexical environment.
   
+  ![Screenshot from 2023-12-11 19-04-57](https://github.com/sachdevavaibhav/js-fundamentals/assets/72242181/b6cbc76d-7fe8-406f-b4c3-8e520ede186d)
+
+  
 ## let & const:
 - let & const variable declarations are hoisted but they are hoisted in a very different manner than var. let & const are not accessible until they are initialized and the JS engine throws a reference error with a message: **cannot access before initialization**.<br/>
 
