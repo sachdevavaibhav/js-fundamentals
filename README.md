@@ -75,4 +75,75 @@
 Because var ‘overflows’ from the inner scope to outer (since it is function scoped) where let variable is present and we are now left with multiple declarations of let variable which is invalid.
 
 ![Screenshot from 2023-12-11 20-35-21](https://github.com/sachdevavaibhav/js-fundamentals/assets/72242181/d3411d1e-6e23-404a-bfca-c1455ec98d7f)
+
+## Closures:
+- A **closure** in JavaScript is a function **bundled together with references to its surrounding state** (the lexical environment) where it was declared. This allows the function to retain access to those external variables even when the function is invoked outside of its original lexical scope.
+```js
+function x() {
+  var a = 10;
+
+  return function y() {
+    console.log(a);
+  }
+}
+
+const z = x();
+console.log(z);
+z(); //10 
+```
+- The closure has the reference to the identifier and not the actual value. So, if at any time the value in a particular identifier changes it will reflect at other places.
+- Uses of closures:
+    1. Module Design Pattern
+    2. Currying
+    3. Functions like once
+    4. Memoize
+    5. Maintaining state in async world
+    6. setTimeouts
+    7. Iterators
+    8. And many more ...
+
+## setTimeout and closures:
+- It’s one of the most asked interview questions.<br/>
+  **Ques: Create a function that utilizes setTimeout to print numbers from 1 to 5, where each number is displayed after a corresponding time interval (e.g., 1 is printed after 1 second, 2 after 2 seconds, and so on)?**
+  Ans:  The naive approach to this solution would be:
+  
+    ```js
+  function x() {
+      for (var i=1; i<=5; i++) {
+        setTimeout(function () {
+          console.log(i);
+        }, i*1000);
+      }
+    }
+    x();
+  ```
+  But this is the wrong approach and the solution will not work because:
+    - The setTimeout callback will create a closure and have reference to its lexical environment. We are particularly interested in the variable i and the closure has reference to it.
+    - The variable **i** is declared with **var** and hence has **function scope**. By the time the callbacks execute, the loop has completed, and i has the final value of 6 which is incorrect.
+      
+  One straight away solution is to use **let** declaration instead of **var** since it has a block scope and ensures each iteration has its own unique **i** value in the closure. Every time the loop runs, a fresh, independent copy of that variable is created. This copy exists only within that specific loop iteration and has no connection to the variable outside the loop or in previous iterations.
+
+  Solution while using **var** declaration:
+     - Another solution to the problem while having **var** declaration is to enclose the setTimeout in another function and pass the value of **i** as an argument to that function.<br/>
+       ```js
+        function x() {
+          for (var i=1; i<=5; i++) {
+            function close(y) {
+              setTimeout(function () {
+                console.log(y);
+              }, y*1000);
+            }
+            close(i);
+          }
+        }
+        
+        x();
+       ```
+
+       This works because in JS the arguments in a function are **pass-by-value** and it will create a copy of that variable in its scope whenever the function is called. So now each invocation creates a separate copy of the variable within the function's scope and the setTimeout closure will have a distinct reference to the individual copy of the variable.  
+  
+    
+
+
+  
         
