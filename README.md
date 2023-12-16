@@ -140,8 +140,104 @@ z(); //10
         x();
        ```
 
-       This works because in JS the arguments in a function are **pass-by-value** and it will create a copy of that variable in its scope whenever the function is called. So now each invocation creates a separate copy of the variable within the function's scope and the setTimeout closure will have a distinct reference to the individual copy of the variable.  
+       This works because in JS the arguments in a function are **pass-by-value** and it will create a copy of that variable in its scope whenever the function is called. So now each invocation creates a separate copy of the variable within the function's scope and the setTimeout closure will have a distinct reference to the individual copy of the variable.
+
+## Function Statement:
+- It is one of the ways to declare a function using function keyword followed by function name, its parameters and function body enclosed in curly braces. It is also called function declaration.
+```js
+function greet(name) {
+  console.log("Hello, " + name + "!");
+}
+```
+## Funtion expression:
+- Functions are the heart of JS and can act as a value. When a function is assigned to a variable it’s called function expression.
+```js
+var b = function(name) {
+  console.log("Hello, " + name + "!");	
+}
+```
+## Difference b/w function statement and function expression:
+- The major difference between them is the way they are hoisted. In a function statement the identifier points to the function code in the memory phase and hence it can be called before its actual declaration. But in case of function expression the identifier (variable) is hoisted with value of undefined in case of var and in case of let & const it is under the temporal dead zone. So, when function expressions are called before actual initialisation the JS engine will give TypeError in case of **var** and ReferenceError in case of **let & const**.
+
+## Function declaration:
+- It is the same as a function statement and there is no difference.
+
+## Anonymous functions:
+- Functions that are defined without a specified name are called anonymous functions. They are only used as values since they don’t have their own identity. It can be used in function expressions, when a function is passed as an argument to another function or when a function is returned from another function.
+
+```js
+var b = function(name) {
+  console.log("Hello, " + name + "!");	
+}
+```
+## Named function expression:
+- Named function expressions are function expressions that have a name identifier, but the name is only accessible within the function itself. The main advantage of using named function expressions is improved debugging, as the function name can be used in stack traces. In terms of hoisting they behave the same as function expressions.
+
+```js
+var add = function namedAdd(a, b) {
+  console.log(namedAdd); // Outputs the function definition
+  return a + b;
+};
+```
+
+## Parameters vs Arguments: 
+- Parameters are the variables listed in the function declaration and act as placeholders for values that the function will receive when it is called.
+- Arguments are the actual values passed to a function when it is invoked.
+- As a side note we can also pass functions as arguments in JS.
+
+## First class functions:
+- It refers to the concept that functions **act as values** and can be passed as arguments to other functions, assigned to variables, returned from functions and stored in a data structure. Such functions are also called **first class citizens**.
+
+## Callback functions:
+- Callback function is a function that is passed as an argument to another function.
+- Callback functions enable the asynchronous behavior of JS even though JS is a synchronous non-blocking single threaded language. We will cover this aspect later on.
+  ```js
+    function x(y) {
+      console.log(“x”);
+      y();
+    };
+    x(function y(){
+      console.log(“y”);
+    })
+  ```
+## Blocking main thread:
+- Since JS is a single threaded language it has a single thread running and has a single call stack. Everything is executed on this call stack only. If any operation blocks this call stack by taking a long time to execute, it will block the call stack since JS is a synchronous language and it will wait for the costly operation to finish first. This is known as blocking the main thread.
+- We should always try to execute costly operations (like network calls etc.) in asynchronous manner.
+
+## Event Listners:
+- Event listeners are functions that are attached to HTML elements and are designed to respond to specific events triggered by user interactions or other activities. Some of the common event listeners are click, blur, focus etc.
+  ```js
+    document.getElementById("btn").addEventListener("click", function () {
+      console.log("Button clicked");
+    });
+  ```
+ <br/>
+ 
+- This is another use case of callback functions. It will be stored somewhere and as soon as the button is clicked, the function gets into the call stack.
   
+  ![image](https://github.com/sachdevavaibhav/js-fundamentals/assets/72242181/7abf0d6a-8a89-4497-8df7-8fc3ba253efa) <br/>
+-  One of the most asked interview questions is to maintain a count variable of how many times this button is clicked. One way to solve this is by maintaining a global variable which is not a right approach as someone might change that variable later in the code. <br/> Another way to solve this problem is by creating a closure since they can be used for data hiding/encapsulation. This way the callback will have reference to its lexical environment outside of where it was defined.
+  ```js
+    function attachEvent() {
+      let count = 0;
+      document.getElementById("btn").addEventListener("click", function () {
+        count++;
+        console.log("Button clicked ", count, " times");
+      });
+    }  
+    attachEvent();
+   ```
+  ![image](https://github.com/sachdevavaibhav/js-fundamentals/assets/72242181/2e45b8f8-ae5a-4eb2-bd18-bf7909bc5fb3)
+  
+- Event listeners are heavy and can take too much space since they also carry their lexical environment with them. Even if the call stack is empty even then callbacks will not free up space. When there are lots of event listeners present in a website it can cause poor performance and hence it is advised to remove these listeners as soon as their job is done
+
+
+
+
+
+
+
+
     
 
 
