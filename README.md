@@ -229,11 +229,50 @@ var add = function namedAdd(a, b) {
    ```
   ![image](https://github.com/sachdevavaibhav/js-fundamentals/assets/72242181/2e45b8f8-ae5a-4eb2-bd18-bf7909bc5fb3)
   
-- Event listeners are heavy and can take too much space since they also carry their lexical environment with them. Even if the call stack is empty even then callbacks will not free up space. When there are lots of event listeners present in a website it can cause poor performance and hence it is advised to remove these listeners as soon as their job is done
+- Event listeners are heavy and can take too much space since they also carry their lexical environment with them. Even if the call stack is empty even then callbacks will not free up space. When there are lots of event listeners present in a website it can cause poor performance and hence it is advised to remove these listeners as soon as their job is done.
 
+## Async JS & Event Loop:
+- JS is a single threaded language and has one call stack. It can only run a single line of code at a time and everything is executed in the call stack. As soon as the JS code is executed a GEC is created and pushed to the call stack. Any function invocation creates a function execution context and is pushed to the call stack. As soon as the function/global code is finished executed it pops off the stack (stack follows LIFO principle). <br/>
+  ![image](https://github.com/sachdevavaibhav/js-fundamentals/assets/72242181/8d6742ba-d5ce-4127-8ed0-5348aa65a1ce)
+  ![js-1](https://github.com/sachdevavaibhav/js-fundamentals/assets/72242181/5d7e3704-1ba7-4b90-b4f7-2bb22368704c)
 
+- The call stack quickly executes what comes to it. _“**Time, Tide and JavaScript waits for none**_”-**Akshay Saini**.
+- The problem comes when we have to execute code that takes time or we need to defer the execution for a specific time period. The JS engine itself does not have these capabilities.
+- The JS engine needs external support to have this behavior and the browser provides these super powers. The browser in itself is a very sophisticated software which can run JS inside of it. But apart from it, it also provides web API which can give super powers to JS. Some of the commonly used web APIs are: setTimeout, fetch, DOM APIs, localStorage, console, location, geoLocation etc.
+- These web APIs are a part of browsers and not JavaScript. JS only has the ability to invoke these apis. All these APIs are available to JS through the global (window) object.<br/>
+  ![image](https://github.com/sachdevavaibhav/js-fundamentals/assets/72242181/0ae67648-79db-4fea-a3b1-497e266ffffc)
 
+- **How setTimeout works behind the scenes?**
+   -  ```js
+        console.log("start");
+        
+        setTimeout(function cb() {
+          console.log("Callback");
+        }, 5000);
+        
+        console.log("end");
+      ```
+   - Let’s see step by step how the above code snippet executes:
+       1. As the script starts executing the GEC is created and pushed to the call stack.
+       2. When console.log(“start”) is executed, the JS engine calls the function from the Web APIs and “start” is logged to the console.
+       3. As soon as the JS engine sees the setTimeout being called it registers the callback with setTimeout web API and the API starts the 5000ms timer then the JS engine moves forward.
+       4. Now it again sees console.log(“start”), and invokes the web API and logs it to the console.
+       5. As the timer expires, the registered callback is pushed to the callback queue.
+       6. Here comes the event loop into the picture. The job of the event loop is to check if there is anything in the callback queue/micro task queue to be executed and if the call stack is empty it pushes the callback from the callback queue/micro task queue to the call stack. It is now in the call stack where the callback is executed.
+          ![image](https://github.com/sachdevavaibhav/js-fundamentals/assets/72242181/fcd2ca35-ebb4-4c6a-acbf-511cd5e26f95)
 
+- **Event Loop**: The event loop enables JavaScript to manage these asynchronous tasks without blocking the main execution thread. The event loop continuously checks the callback queue and the call stack. If the call stack is empty and some callback in the callback queue is waiting to be executed, the event loop takes the first function from the callback queue and pushes it onto the call stack for execution.
+- **Callback queue(task/message queue)**: It is the place where asynchronous callbacks (originating from events, timer etc) are queued up for execution.
+- **Microtask queue**: It is the same as the callback queue but it has higher priority than the callback queue. The callbacks which are queued inside the microtask queue are executed first until the microtask queue becomes empty. Microtask can have tasks like:
+    1.** Promise callbacks**: The ‘then’ and ‘catch’ callbacks of Promises.
+    2. **Mutation observer callback**: Functions registered with the Mutation Observer API. The Mutation Observer interface provides the ability to watch for changes being made to the DOM tree. 
+Learn more about mutation observer here: https://www.linkedin.com/pulse/mutation-observer-js-dhruvil-bhatt/
+- **Starvation of callback queue**: When certain callbacks or tasks in the callback queue are delayed or neglected due to continuous execution of high-priority tasks (in microtask queue) or long-running operations is called starvation of callback queue.
+
+  
+## Trust issues 💔 with setTimeout: 
+- The setTimeout does not guarantee that the callback will run after the specified time since it is possible that as the timer expires the call stack is blocked and the callback has to further wait to execute. setTimeout only guarantees the minimum time and not the exact time. 
+   
 
 
 
