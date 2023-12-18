@@ -5,6 +5,7 @@
 [![Namaste JS Intro by Akshay Saini](https://img.youtube.com/vi/pN6jk0uUrD8/0.jpg)](https://www.youtube.com/watch?v=pN6jk0uUrD8&list=PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP&index=1)
 
 ### Consider giving a star to this repository. :star:
+### Feel free to contribute to it.
 
 ## How does JS works?
 - **Everything in JS happens inside the execution context**. It consists of memory (variable environment) and code (thread of execution). Memory is a key value pair environment where all variables (including function names etc) are stored. In the thread of execution, code is executed line by line.
