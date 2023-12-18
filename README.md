@@ -1,5 +1,8 @@
 # JavaScript Fundamentals 
 
+### A big thanks to Akshay Saini for creating such in-depth JS course for free on YouTube. Checkout his plalist [Namaste 🙏 JS](https://www.youtube.com/playlist?list=PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP) and [NamasteDev.com](https://namastedev.com/).
+### Consider giving a star to this repository. :star:
+
 ## How does JS works?
 - **Everything in JS happens inside the execution context**. It consists of memory (variable environment) and code (thread of execution). Memory is a key value pair environment where all variables (including function names etc) are stored. In the thread of execution, code is executed line by line.
 - JS is a synchronous single-threaded language. That means the code is executed synchronously line by line in a single thread.
