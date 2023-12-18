@@ -1,6 +1,9 @@
 # JavaScript Fundamentals 
 
-### A big thanks to Akshay Saini for creating such in-depth JS course for free on YouTube. Checkout his plalist [Namaste 🙏 JS](https://www.youtube.com/playlist?list=PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP) and [NamasteDev.com](https://namastedev.com/).
+### A big thanks to Akshay Saini for creating such in-depth JS course for free on YouTube. Checkout his playlist [Namaste 🙏 JS](https://www.youtube.com/playlist?list=PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP) and his website [NamasteDev.com](https://namastedev.com/).
+
+[![Namaste JS Intro by Akshay Saini](https://img.youtube.com/vi/pN6jk0uUrD8/0.jpg)](https://www.youtube.com/watch?v=pN6jk0uUrD8&list=PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP&index=1)
+
 ### Consider giving a star to this repository. :star:
 
 ## How does JS works?
