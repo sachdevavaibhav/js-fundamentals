@@ -270,7 +270,7 @@ var add = function namedAdd(a, b) {
 - **Event Loop**: The event loop enables JavaScript to manage these asynchronous tasks without blocking the main execution thread. The event loop continuously checks the callback queue and the call stack. If the call stack is empty and some callback in the callback queue is waiting to be executed, the event loop takes the first function from the callback queue and pushes it onto the call stack for execution.
 - **Callback queue(task/message queue)**: It is the place where asynchronous callbacks (originating from events, timer etc) are queued up for execution.
 - **Microtask queue**: It is the same as the callback queue but it has higher priority than the callback queue. The callbacks which are queued inside the microtask queue are executed first until the microtask queue becomes empty. Microtask can have tasks like:
-    1.** Promise callbacks**: The ‘then’ and ‘catch’ callbacks of Promises.
+    1. **Promise callbacks**: The ‘then’ and ‘catch’ callbacks of Promises.
     2. **Mutation observer callback**: Functions registered with the Mutation Observer API. The Mutation Observer interface provides the ability to watch for changes being made to the DOM tree. 
 Learn more about mutation observer here: https://www.linkedin.com/pulse/mutation-observer-js-dhruvil-bhatt/
 - **Starvation of callback queue**: When certain callbacks or tasks in the callback queue are delayed or neglected due to continuous execution of high-priority tasks (in microtask queue) or long-running operations is called starvation of callback queue.
