@@ -276,7 +276,21 @@ var add = function namedAdd(a, b) {
 Learn more about mutation observer here: https://www.linkedin.com/pulse/mutation-observer-js-dhruvil-bhatt/
 - **Starvation of callback queue**: When certain callbacks or tasks in the callback queue are delayed or neglected due to continuous execution of high-priority tasks (in microtask queue) or long-running operations is called starvation of callback queue.
 
-  
+## JS Engine:
+- **JS Runtime Environment**: It refers to the environment where JS code is executed and consists of many components. The components are: JS engine (where memory is managed and code is executed), external APIs, callback queue, microtask queue and event loop. <br/> <br/> This runtime environment enables javascript to run anywhere like browsers have their own JS runtime environment, Node.js is another open source runtime environment which can execute JS outside of browsers. All runtimes have their own set of APIs to power the JS engine and many apis can have the same name but different implementation internally. <br/> <br/>
+  ![image](https://github.com/sachdevavaibhav/js-fundamentals/assets/72242181/a46a221c-c91b-4191-b01f-98e55db844fd)
+
+- **Deep dive into JS engine**: The JS engine is the heart of the JS runtime environment. Every browser has their own implementation of the same but there are a lot of things in common. Let’s see the architecture of a general JS engine and how the code is executed. <br/> <br/>
+  ![image](https://github.com/sachdevavaibhav/js-fundamentals/assets/72242181/ee5978ed-c427-45b2-ae16-e4efbb9e833d)
+
+  -   There are a lot of components involved like: Tokenizer, parser, interpreter, compiler, call stack, memory heap and garbage collector.
+  -   The source code is first tokenized ( broken down into tokens which are the smallest units of the language, representing keywords, operators, literals, and other language elements) and this stream of tokens is then converted to AST (Abstract Syntax Tree) using the parser.
+  -   AST is a data structure, which is not unique to JS but actually used by a lot of other languages and is simply a tree representation of your code, and the main reason the engine creates an AST instead of compiling directly to a machine code is that it’s easier to convert to machine code when you have the code inside a tree data structure. (Visualize: https://astexplorer.net/)
+  -   The interpreter then converts the AST to bytecode (IR) and executes the code line by line. The compiler compiles and optimizes the code that’s repeating itself. This method is known as JIT (Just in time) compilation. Read more here: (https://coralogix.com/blog/how-js-works-behind-the-scenes-the-engine/#:~:text=JS%20code%20has%20to%20run,if%20the%20syntax%20is%20correct.)
+  -   The code from interpreter and compiler is then executed in the call stack with the help of memory heap and garbage collection.
+  -   Memory heap is a region where dynamically allocated memory is managed. Objects and data structures are stored in the heap.
+  -   The garbage collector automatically identifies and reclaims memory that is no longer in use or referenced by the program.
+
 ## Trust issues 💔 with setTimeout: 
 - The setTimeout does not guarantee that the callback will run after the specified time since it is possible that as the timer expires the call stack is blocked and the callback has to further wait to execute. setTimeout only guarantees the minimum time and not the exact time.
 
