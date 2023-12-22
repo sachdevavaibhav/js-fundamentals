@@ -278,7 +278,18 @@ Learn more about mutation observer here: https://www.linkedin.com/pulse/mutation
 
   
 ## Trust issues 💔 with setTimeout: 
-- The setTimeout does not guarantee that the callback will run after the specified time since it is possible that as the timer expires the call stack is blocked and the callback has to further wait to execute. setTimeout only guarantees the minimum time and not the exact time. 
+- The setTimeout does not guarantee that the callback will run after the specified time since it is possible that as the timer expires the call stack is blocked and the callback has to further wait to execute. setTimeout only guarantees the minimum time and not the exact time.
+
+## Higher Order Functions:
+- Functions that either take one or more functions as arguments or return a function as their result are called higher order functions. It is part of the functional programming paradigm and it can help us in writing modular, DRY and optimized code. There are a lot of inbuilt higher order functions in JS like: map, filter etc and we can write our own as well.
+- The function passed as argument in a higher order function is called callback function.
+- Higher order functions are possible in JS because functions are first class citizens and are treated as values.
+
+## Map, filter and reduce:
+- They are higher order functions built into JS that operate on arrays.
+- **Map**: It applies a given function to each element of an array, creating a new array with the results.
+- **Filter**: It takes a function and creates a new array containing only the elements that satisfy a specified condition.
+- **Reduce**: It iterates over an array, accumulating a single result by applying a given function to each element.
    
 
 
