@@ -304,7 +304,15 @@ Learn more about mutation observer here: https://www.linkedin.com/pulse/mutation
 - **Map**: It applies a given function to each element of an array, creating a new array with the results.
 - **Filter**: It takes a function and creates a new array containing only the elements that satisfy a specified condition.
 - **Reduce**: It iterates over an array, accumulating a single result by applying a given function to each element.
-   
+
+## Issues with callbacks:
+- It is because of callbacks that JS has asynchronous behavior but it can cause troubles sometimes. The main issues that come up:
+  - **Callback Hell**:  Also known as "pyramid of doom," is a term used to describe a situation in JavaScript where multiple nested callbacks are used within asynchronous code. Our code starts to grow horizontally rather than vertically and it makes readability and maintainability of the codebase difficult.
+  - **Inversion of Control**: Due to callback hell, the flow of the program is dictated by the callbacks and makes it challenging to follow the logical flow of the code.
+
+## Promises:
+- A promise is an object that represents eventual completion or failure of an async operation. This object helps solve the problem of inversion of control by allowing developers to attach callbacks to previous dependent async operations rather than passing the callback to it. It also solved the problem of callback hell by promise chaining.
+- Promise objects are immutable and can have either of three states: pending, fulfilled or rejected.
 
 
 
